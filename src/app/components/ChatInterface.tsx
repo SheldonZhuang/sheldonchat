@@ -255,20 +255,11 @@ export default function ChatInterface() {
                     <ReactMarkdown 
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        code: ({ node, inline, className, children, ...props }) => {
-                          const match = /language-(\w+)/.exec(className || '');
-                          return !inline ? (
-                            <pre className="bg-gray-100 dark:bg-gray-900 rounded-lg p-3 overflow-x-auto">
-                              <code className={className} {...props}>
-                                {children}
-                              </code>
-                            </pre>
-                          ) : (
-                            <code className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm" {...props}>
-                              {children}
-                            </code>
-                          );
-                        },
+                        code: ({ children, className, ...props }) => (
+                          <code className={`bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm ${className || ''}`} {...props}>
+                            {children}
+                          </code>
+                        ),
                         blockquote: ({ children }) => (
                           <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-400">
                             {children}
